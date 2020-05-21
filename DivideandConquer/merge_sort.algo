@@ -1,0 +1,56 @@
+/* Function to merge the two haves arr[left..mid] and arr[mid+1..right] of array arr[] */
+PROCEDURE merge(VAR arr : ARRAY_OF INTEGER, left, mid, right : INTEGER)
+VAR
+    i,j,k : INTEGER;
+    n1 : INTEGER := mid - left +1;
+    n2 : INTEGER := right -mid ;
+    L : ARRAY_OF INTEGER[n1];
+    R : ARRAY_OF INTEGER[n2];
+BEGIN
+    /* Copy data to temp arrays L[] and R[] */
+    FOR i FROM 0 TO n1-1  DO
+        L[i] := arr[left +i];
+    END_FOR
+    FOR j FROM 0 TO n2-1 DO
+        R[j] := arr [mid+1+j]
+    END_FOR
+    /* Merge the temp arrays back into arr[left..right]*/
+    i:=0;
+    j:=0;
+    k:= left;
+    WHILE (i < n1 AND j < n2) DO
+        IF (L[i] <= R[j]) THEN
+            arr[k] := L[i];
+            i := i+1;
+        ELSE
+            arr[k] := R[j];
+            j := j+1;
+        END_IF
+        k := k+1;
+    END_WHILE
+    /* Copy the remaining elements of L[], if there are any */
+    WHILE (i < n1) DO
+        arr[k] := L[i];
+        i := i+1;
+        k := k+1;
+    END_WHILE
+    /* Copy the remaining elements of R[], if there are any */
+    WHILE (j < n2) DO
+        arr[k] := R[j];
+        j := j+1;
+        k := k+1;
+    END_WHILE
+END
+
+
+PROCEDURE merge_sort(VAR arr : ARRAY_OF INTEGER, left,right : INTEGER)
+VAR
+    mid : INTEGER;
+BEGIN
+    IF (left < right) THEN
+        m:= left +(right-left)/2 ; // //Same as (left+right)/2 but avoids overflow for large left & right
+        merge_sort(arr,left, mid);
+        merge_sort(arr,mid+1, right);
+        merge(arr, left,mid,right);
+    END_IF
+END

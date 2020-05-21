@@ -1,0 +1,29 @@
+// In mathematics, a Hofstadter sequence is a member of 
+//a family of related integer sequences defined by non-linear 
+//recurrence relations. In this example we are going to focus 
+//on Hofstadter Female and Male sequences:
+
+/* 
+F ( 0 ) = 1
+M ( 0 ) = 0 
+F ( n ) = n - M ( F ( n - 1 ) ), n > 0 
+M ( n ) = n - F ( M ( n - 1 ) ), n > 0.
+*/
+
+FUNCTION hofstader_female(n : INTEGER) : INTEGER
+BEGIN
+    IF (n = 0) THEN
+        RETURN 1;
+    ELSE
+        RETURN n - hofstader_male(hofstader_female(n-1));
+    END_IF
+END
+
+FUNCTION hofstader_male(n : INTEGER) : INTEGER
+BEGIN
+    IF (n = 0) THEN
+        RETURN 0;
+    ELSE
+        RETURN n - hofstader_female(hofstader_male(n-1));
+    END_IF
+END

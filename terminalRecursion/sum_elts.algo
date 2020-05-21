@@ -1,0 +1,10 @@
+FUNCTION linearSum(arr : ARRAY_OF INTEGER, n : INTEGER) : INTEGER
+BEGIN
+    IF (n = 1) THEN
+        RETURN arr[0];
+    ELSE
+        RETURN A[n-1]+linearSum(arr,n-1) ;
+    END_IF
+    
+END
+// linearSum(arr, arr.length);

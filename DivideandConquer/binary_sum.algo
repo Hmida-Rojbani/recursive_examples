@@ -1,0 +1,11 @@
+FUNCTION binarySum(arr : ARRAY_OF INTEGER,i, n : INTEGER) : INTEGER
+BEGIN
+    IF (n = 1) THEN
+        RETURN arr[i];
+    ELSE
+    RETURN binarySum(arr,i,n/2)+binarySum(arr,i+n/2,n/2) ;
+    END_IF
+    
+END
+
+// binarySum(arr,0,arr.length);

@@ -1,0 +1,11 @@
+FUNCTION fun(n : INTEGER) : INTEGER
+BEGIN
+    IF (n > 100) THEN
+        RETURN n -10;
+    ELSE 
+    // A recursive function passing parameter 
+    // as a recursive call or recursion 
+    // inside the recursion 
+    RETURN fun(fun(n+11)) ;
+    END_IF
+END
